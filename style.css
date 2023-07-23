@@ -1,0 +1,42 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  --barbie-vote: 50%;
+  --oppenheimer-vote: 50%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: var(--barbie-vote) var(--oppenheimer-vote);
+}
+main .poll-option {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+main .poll-option .poster {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  transition: scale 0.3s;
+  cursor: pointer;
+}
+main .poll-option .poster:hover {
+  scale: 1.2;
+}
+
+@media screen and (max-width: 660px) {
+  main {
+    grid-template-columns: 100%;
+    grid-template-rows: var(--barbie-vote) var(--oppenheimer-vote);
+    flex-direction: column;
+  }
+  main .poll-option {
+    height: unset;
+    width: 100vw;
+  }
+}/*# sourceMappingURL=style.css.map */
