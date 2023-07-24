@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+}
+
+main {
+  --barbie-vote: 50%;
+  --oppenheimer-vote: 50%;
+  height: 100vh;
+  display: grid;
+  background-color: black;
+  grid-template-columns: var(--barbie-vote) var(--oppenheimer-vote);
+}
+main:not(.show-votes) .poll-option {
+  pointer-events: all;
+}
+main:not(.show-votes) .poll-option .poster:hover {
+  scale: 1.1;
+}
+main .poll-option {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+main .poll-option .poster {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  transition: scale 0.3s;
+  cursor: pointer;
+}
+
+.show-votes {
+  position: relative;
+}
+.show-votes .poll-option {
+  position: relative;
+}
+.show-votes .poll-option img {
+  animation: blur 1s ease-in forwards;
+}
+.show-votes .poll-option::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -30%;
+  content: attr(data-rating);
+  font-size: 8em;
+  letter-spacing: 1rem;
+  z-index: 2;
+  color: rgb(255, 255, 255);
+  filter: drop-shadow(0pt 4pt 8pt #000);
+  animation: fadeUp 1s ease forwards;
+}
+
+.show-votes::after {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(43, 39, 39, 0.2588235294);
+  top: 0;
+  left: 0;
+  content: "";
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes blur {
+  from {
+    filter: blur(0pt);
+  }
+  to {
+    filter: blur(10pt);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    translate: -50% -30%;
+  }
+  to {
+    opacity: 1;
+    translate: calc(-50% + 0.5em) -50%;
+  }
+}
+@media screen and (max-width: 660px) {
+  main {
+    grid-template-columns: 100%;
+    grid-template-rows: var(--barbie-vote) var(--oppenheimer-vote);
+    flex-direction: column;
+  }
+  main .poll-option {
+    height: unset;
+    width: 100vw;
+  }
+}/*# sourceMappingURL=style.css.map */
